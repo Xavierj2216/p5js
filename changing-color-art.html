@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        var r,g,b;
+        function setup() {
+            r = random(20,50);//random color red
+            g = random(20,75);//random color green
+            b = random(20,100);//random color blue
+            createCanvas(800,800);
+            background(200)//gray
+        }
+
+        function draw() {
+            noStroke()
+            
+            
+        }//effects from mouse moving
+        function mouseMoved(){
+            fill(r,g,b);//random color between red,green,blue combine
+            arc(mouseX, mouseY, 80, 80, 0, PI+QUARTER_PI, OPEN);//half circle
+            triangle(mouseX, mouseY, 58, 20, 86, 75);//draws triangles
+            r++//red increase  
+            g++//green increase
+            b++//blue increse
+        }//effects when mouse is click drag
+        function mouseDragged(){
+            fill(r,g,b);
+            ellipse(mouseX, mouseY, 80, 80);//draws circles
+            triangle(mouseX, mouseY, 58, 20, 86, 75);//draws triangles
+            r--//red decrease 
+            g--//green increase
+            b--//blue increase
+        }//deletes everything   
+        function keyPressed(){
+            clear()
+            
+        }
+        function mousePressed(){
+            
+        }
+            
+        
+            
+            
+            
+            
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
