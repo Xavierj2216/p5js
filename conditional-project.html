@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var x;
+    var y;
+    var w;
+    var h;
+        function setup() {
+            createCanvas(800,600);
+            x = 100;
+            y = 100;
+            w = 100;
+            h = 100;
+            ellipse(x,y,100,100)
+            fill(0,0,255)
+            
+        }//controls to draw
+        //When key is down it continues moving and stops when you let go
+        function draw() {
+            if (keyIsDown(LEFT_ARROW))
+                x-=5;
+
+            if (keyIsDown(RIGHT_ARROW))
+                x+=5;
+
+            if (keyIsDown(UP_ARROW))
+                y-=5;
+
+            if (keyIsDown(DOWN_ARROW))
+                y+=5;
+            
+            ellipse(x,y,w,h)
+                
+            
+            
+        }//controls used for drawing
+        function keyPressed(){
+            if(keyCode == UP_ARROW){
+                ellipse(x,y,100,100)
+                noStroke()
+                y-=10;
+            }
+            else if(keyCode == DOWN_ARROW){
+                ellipse(x,y,100,100)
+                noStroke()
+                y+=10;
+            }
+            if(keyCode == RIGHT_ARROW){
+                ellipse(x,y,100,100)
+                noStroke()
+                x+=10;
+            }
+            else if(keyCode == LEFT_ARROW){
+                ellipse(x,y,100,100)
+                noStroke()
+                x-=10;
+            
+            }//pen up
+            if(key == "S"){
+                ellipse(x,y,100,100)
+                noStroke()
+                noFill()
+            }//pen down
+            else if(key == "A"){
+                ellipse(x,y,100,100)
+                fill(0,0,255)
+                stroke()
+            }//color change 
+            else if(key == "D"){
+                ellipse(x,y,100,100)
+                fill(random(0,255),random(0,255),random(0,255))
+            }//increase size 
+            else if(key == "F"){
+                ellipse(x,y,w,h)
+                w+=20;
+                h+=20;
+                
+            }
+            //decrease size
+            else if(key == "G"){
+                ellipse(x,y,w,h)
+                w-=20;
+                h-=20;
+            }//clears whole drawing
+            else if(key == "W"){
+                clear()
+            }
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/Xavierj2216/p5js/blob/gh-pages/conditional-project.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
