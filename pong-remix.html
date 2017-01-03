@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+//define variables that will be use globally
+        var ballX;
+        var ballY;
+        var ballSpeedX = 5;
+        var ballSpeedY = 5;
+        var paddleHeight = 30;
+        var score = 0
+        //var life = 0
+
+        function setup() {
+            createCanvas(800, 600);
+            noCursor();
+//makes the ball start at the middle top
+            ballX = width / 2;
+            ballY = height / 2;
+        }
+
+        function draw() {
+// gives background gray color
+            background(128);
+            // textSize(30)
+            // text("Life:",200,50)
+            // text(score,305,50)
+            fill(0,0,255)
+                    textSize(30)
+                    text("score:",50,50)
+                    text(score,145,50)//text what is inside the variable score
+// functions that are being call 
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+        }
+// teaches the system how to move ball 
+        function moveBall() {
+            ballX = ballX + ballSpeedX;//ball moves in speed of 5 changing location of ball for x-axis
+            ballY = ballY + ballSpeedY;//ball moves in speed of 5 changing location of ball for y-axis
+//prints out the speed of ball in the console
+            console.log("ballSpeedX: " + ballSpeedX + 
+                               ", ballSpeedY: " + ballSpeedY);
+        }
+//function to check if ball hits something
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) {//if the ball is in the left or right corner 
+                ballSpeedX = ballSpeedX * -1 ;//reverse ball moving opposite direction for x
+            }
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;//reverse ball moving opposite direction for x
+            }
+//checks if ball is pass goal line
+            if (ballY > height - paddleHeight) {
+                if (ballX > mouseX && ballX < mouseX + 200) {//when ball hits paddle
+                    ballSpeedY = ballSpeedY * -1.20;
+                    console.log(ballSpeedY)
+                    score+=1//whenever the ball hits the paddle the score increases
+    
+                    
+
+                    
+                    
+                }
+        // function checkSpeed() { //when speed of ball going up and down passes 50 it goes back to 5 then start over
+        //     if (ballSpeedY > 20){ 
+        //         if(ballSpeedY > 20){
+        //             ballSpeedY = 5
+        //         else(ballSpeedY = 5){
+        //              ballSpeedY = ballSpeedY * -1.20;
+        //                     console.log(ballSpeedY)
+                    
+        //         }
+                
+                    
+//checks if ball passes paddle 
+            // else if(ballY > height){
+            //     life+=1
+            //     if(life == 3){
+            //         text("GAME OVER!", width / 2, height / 2);
+            //          noLoop();//stops eveything
+            //     }
+            //}
+                else {
+                    text("GAME OVER!", width / 2, height / 2);
+                    background(255,0,0)
+                    noLoop();//stops eveything
+                    fill(0,0,255)
+                    textSize(30)
+                    text("score:",50,50)
+                    text(score,145,50)//text what is inside the variable score
+                    
+                }
+            }
+        }
+//teaches system to draw a ball
+        function drawBall() {
+            noStroke();//no outline
+            ellipse(ballX, ballY, 20, 20);
+        }
+//teaches system to draw a paddle
+        function drawPaddle() {
+            strokeWeight(4);
+            rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);//draws paddle and the outline for the paddle
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/Xavierj2216/p5js/blob/gh-pages/pong-remix.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas').remove());
+        });
+    </script>
+</body>
+
+
+</html>
+
