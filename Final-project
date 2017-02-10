@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var x;
+    var y;
+    var w;
+    var q;
+    var obstacle1;
+    var obstacle2;
+    var obstacle3;
+    var road_markers = [];
+    //var road_makers = [];
+    var score = 20;
+        function setup() {
+            createCanvas(600, 600);
+            
+            background(180)//color gray
+            x = 0;
+            y = 0;
+           road_markers1 = new Road_markers();//adds another road line
+           road_markers2 = new Road_markers();
+           road_markers3= new Road_markers();
+           
+        //   road_makers1 = new Road_makers();
+        //   road_makers2 = new Road_makers();
+           
+        }
+     
+      
+     
+        function draw() {
+             
+            background(180)
+            textSize(30)
+            text("score:"+floor(score),50,50)//text what is inside the variable score
+            score-=0.25//score decreases by 0.25
+            line(0, 400, 600, 400);
+            line(0, 200, 600, 200);
+            for(var i=0; i<3; i++){
+                  fill(255,255,0)
+            //call out what is taught to the system about road
+            road_markers.push(new Road_markers(0,((200*i)+75)));
+            road_markers[i].move();
+            road_markers[i].display();
+            
+            Draw_car();//draws a car according to how system was taught to
+            //draws the 3 black squares located at the right end
+            obstacle1 = rect(550,10,100,180)
+            obstacle2 = rect(550,210,100,180)
+            obstacle3 = rect(550,410,100,180)
+        }
+         
+        
+          //If arrow key is pressed down then
+            if (keyIsDown(UP_ARROW))
+                y-=5;
+                //w-=5;
+
+            if (keyIsDown(DOWN_ARROW))
+                y+=5;
+                //w-=5
+        //checks if score passes a number
+            else if (score<=-30){
+                text("GAME OVER!", width / 2, height / 2);
+                noLoop();//stops eveything
+            }
+            else if (score==50){
+                text("well play now +1!", width / 2, height / 2);
+                score-=2.5;
+                
+            
+            }
+            else if (score==100){
+                text("well play now +2!", width / 2, height / 2);
+                score=110
+                var add = prompt("What speed in numbers would you like score to decrease in?");
+                add = score-add//score is now equal to what the user typed for add minus score which is 0
+                
+            }
+            else if (score>=150){
+                text("You beat the game!", width / 2, height / 2);
+                noLoop();//stops whole game
+                
+            }
+            
+            
+            
+            
+            
+            //rect(x,y,100,70)
+            //rect(x,y,30,70)
+                
+            
+        }   
+        //controls used for moving car
+        function keyPressed(){
+            if(keyCode == UP_ARROW){
+                line(0, 400, 600, 400);
+                line(0, 200, 600, 200);
+                rect(x,y,100,100)
+                y-=10;
+                score+=5
+                // rect(q,w,30,40)
+                // w-=10;
+                
+            }
+            else if(keyCode == DOWN_ARROW){
+                line(0, 400, 600, 400);
+                line(0, 200, 600, 200);
+                rect(x,y,100,100)
+                y+=10;
+                score+=5
+                // rect(q,w,30,40)
+                // w+=10;
+            
+            
+            }
+            else return false;//prevents pg from scrolling 
+            
+            
+            
+        }//makes road
+        function Road_markers(x2,y2) {
+        this.x = x2
+        this.y = y2
+        this.speed =  -5
+        //teaches sytem how road will move
+        this.move = function(){
+          this.x += this.speed;
+          if(this.x < 0){//check if road goes over 0
+            this.x = width;//goes back to 600 which is width
+          }
+        }
+        //teaches system how to draw road
+        this.display = function(){
+            fill(255)//
+          rect(this.x,this.y,100,25);//draws road 
+        }
+        {
+            }
+        
+      }
+        function Draw_car(){
+            //constrain(y,600,600)
+            fill(0)
+            //wheels
+            rect(x+50,y+50,40,30)
+            rect(x+50,y+110,40,30)
+            rect(x+110,y+50,40,30)
+            rect(x+110,y+110,40,30)
+            fill(255,0,0)
+            rect(x+50,y+60,100,70)//body
+            rect(x+40,y+60,60,70)//middle
+            rect(x+50,y+70,50,50)//storage
+            rect(x+141,y+60,30,70)//front
+            fill(0)
+            rect(x+130,y+63,10,65)//window
+            
+            
+            
+            y=constrain(y,0,600)//keeps car inside Canvas
+            
+            
+            
+        }
+        
+       
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/Xavierj2216/p5js/blob/gh-pages/Final-project.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
