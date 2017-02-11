@@ -16,6 +16,7 @@
     var road_markers = [];
     //var road_makers = [];
     var score = 20;
+    score = add;
         function setup() {
             createCanvas(600, 600);
             
@@ -69,7 +70,7 @@
                 background(255,0,0)
                 fill(0)
                 textSize(30)
-                text("score:"+floor(score),50,50)
+            text("score:"+floor(score),50,50)
                 text("GAME OVER!", width / 2, height / 2);
                 noLoop();//stops eveything
             }
