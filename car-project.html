@@ -16,6 +16,7 @@
     var road_markers = [];
     //var road_makers = [];
     var score = 20;
+    score = add;
         function setup() {
             createCanvas(600, 600);
             
@@ -66,23 +67,27 @@
                 //w-=5
         //checks if score passes a number
             else if (score<=-30){
+                background(255,0,0)
+                fill(0)
+                textSize(30)
+            text("score:"+floor(score),50,50)
                 text("GAME OVER!", width / 2, height / 2);
                 noLoop();//stops eveything
             }
             else if (score==50){
-                text("well play now +1!", width / 2, height / 2);
-                score-=2.5;
+                text("well play now -1.25", width / 2, height / 2);
+                score-=2.25;
                 
             
             }
             else if (score==100){
                 text("well play now +2!", width / 2, height / 2);
-                score=110
+                score=150
                 var add = prompt("What speed in numbers would you like score to decrease in?");
                 add = score-add//score is now equal to what the user typed for add minus score which is 0
                 
             }
-            else if (score>=150){
+            else if (score>=200){
                 text("You beat the game!", width / 2, height / 2);
                 noLoop();//stops whole game
                 
@@ -104,7 +109,7 @@
                 line(0, 200, 600, 200);
                 rect(x,y,100,100)
                 y-=10;
-                score+=5
+                score+=3
                 // rect(q,w,30,40)
                 // w-=10;
                 
@@ -114,13 +119,13 @@
                 line(0, 200, 600, 200);
                 rect(x,y,100,100)
                 y+=10;
-                score+=5
+                score+=3
                 // rect(q,w,30,40)
                 // w+=10;
             
             
             }
-            //else return false;//prevents pg from scrolling 
+            else return false;//prevents pg from scrolling 
             
             
             
@@ -163,7 +168,7 @@
             
             
             
-            y=constrain(y,0,600)//keeps car inside Canvas
+            y=constrain(y,0,600)//keeps car inside the Canvas
             
             
             
@@ -173,20 +178,21 @@
     </script>
 </head>
 
+
 <body>
     <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
     <div id="code" class="container-fluid">
-        <script src="https://gist-it.appspot.com/github/xavierj2216/p5js/blob/gh-pages/car-project.html?footer=0"></script>
+        <script src="https://gist-it.appspot.com/github/Xavierj2216/p5js/blob/gh-pages/final-project.html?footer=0"></script>
     </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
         $(window).bind("load", function() {
-            $('#code').before($('#defaultCanvas').remove());
+            $('#code').before($('#defaultCanvas0').remove());
         });
     </script>
 </body>
-
 
 
 
