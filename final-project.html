@@ -15,19 +15,14 @@
     var obstacle3;
     var road_markers = [];
     //var road_makers = [];
-    var score = 0;
-    var goal = 0;
-    var carX;
-    var carY;
-    //score = add;
+    var score = 20;
+    score = add;
         function setup() {
             createCanvas(600, 600);
             
             background(180)//color gray
             x = 0;
             y = 0;
-            carX = 0;
-            carY = 0;
            road_markers1 = new Road_markers();//adds another road line
            road_markers2 = new Road_markers();
            road_markers3= new Road_markers();
@@ -44,7 +39,7 @@
             background(180)
             textSize(30)
             text("score:"+floor(score),50,50)//text what is inside the variable score
-            text("goal:"+floor(goal),200,50)
+            score-=0.25//score decreases by 0.25
             line(0, 400, 600, 400);
             line(0, 200, 600, 200);
             for(var i=0; i<3; i++){
@@ -63,33 +58,40 @@
          
         
           //If arrow key is pressed down then
-            if (keyIsDown(LEFT_ARROW))
-                carY-=5;
+            if (keyIsDown(UP_ARROW))
+                y-=5;
                 //w-=5;
 
-            if (keyIsDown(RIGHT_ARROW))
-                carY+=5;
+            if (keyIsDown(DOWN_ARROW))
+                y+=5;
                 //w-=5
         //checks if score passes a number
-            else if (score >= 30){
+            else if (score<=-30){
                 background(255,0,0)
                 fill(0)
                 textSize(30)
-                text("score:"+floor(score),50,50)
-                text("player1 wins!", width / 2, height / 2);
+            text("score:"+floor(score),50,50)
+                text("GAME OVER!", width / 2, height / 2);
                 noLoop();//stops eveything
             }
-            else if (goal >= 30){
-                background(0,0,255)
-                fill(0)
-                textSize(30)
-                text("point:"+floor(score),50,50)
-                text("player2 wins!", width / 2, height / 2);
-                noLoop();//stops eveything
+            else if (score==50){
+                text("well play now -1.25", width / 2, height / 2);
+                score-=2.25;
                 
             
             }
-    
+            else if (score==100){
+                text("well play now +2!", width / 2, height / 2);
+                score=150
+                var add = prompt("What speed in numbers would you like score to decrease in?");
+                add = score-add//score is now equal to what the user typed for add minus score which is 0
+                
+            }
+            else if (score>=200){
+                text("You beat the game!", width / 2, height / 2);
+                noLoop();//stops whole game
+                
+            }
             
             
             
@@ -102,28 +104,27 @@
         }   
         //controls used for moving car
         function keyPressed(){
-            if(keyCode == LEFT_ARROW){
+            if(keyCode == UP_ARROW){
                 line(0, 400, 600, 400);
                 line(0, 200, 600, 200);
                 rect(x,y,100,100)
-                carY-=10;
-                score+=1
+                y-=10;
+                score+=3
                 // rect(q,w,30,40)
                 // w-=10;
                 
             }
-            else if(keyCode == RIGHT_ARROW){
+            else if(keyCode == DOWN_ARROW){
                 line(0, 400, 600, 400);
                 line(0, 200, 600, 200);
                 rect(x,y,100,100)
-                carY+=10;
-                goal+=1
+                y+=10;
+                score+=3
                 // rect(q,w,30,40)
                 // w+=10;
             
-        
-            }
             
+            }
             else return false;//prevents pg from scrolling 
             
             
@@ -149,25 +150,25 @@
             }
         
       }
-         function Draw_car(){
+        function Draw_car(){
             //constrain(y,600,600)
             fill(0)
             //wheels
-            rect(carX+250,carY+250,40,30)
-            rect(carX+250,carY+320,40,30)
-            rect(carX+310,carY+250,40,30)
-            rect(carX+310,carY+320,40,30)
+            rect(x+50,y+50,40,30)
+            rect(x+50,y+110,40,30)
+            rect(x+110,y+50,40,30)
+            rect(x+110,y+110,40,30)
             fill(255,0,0)
-            rect(carX+250,carY+264,100,70)//body
-            rect(carX+240,carY+265,60,70)//middle
-            rect(carX+250,carY+275,50,50)//storage
-            rect(carX+342,carY+265,30,70)//front
+            rect(x+50,y+60,100,70)//body
+            rect(x+40,y+60,60,70)//middle
+            rect(x+50,y+70,50,50)//storage
+            rect(x+141,y+60,30,70)//front
             fill(0)
-            rect(carX+330,carY+267,10,65)//window
+            rect(x+130,y+63,10,65)//window
             
             
             
-            carY=constrain(y,0,600)//keeps car inside the Canvas
+            y=constrain(y,0,600)//keeps car inside the Canvas
               
         }
         
@@ -177,9 +178,11 @@
 
 
 <body>
+    <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
     <div id="code" class="container-fluid">
-        <script src="https://gist-it.appspot.com/github/xavierj2216/p5js/blob/gh-pages/versing-game.html?footer=0"></script>
+        <script src="https://gist-it.appspot.com/github/Xavierj2216/p5js/blob/gh-pages/final-project.html?footer=0"></script>
     </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
@@ -187,8 +190,7 @@
             $('#code').before($('#defaultCanvas0').remove());
         });
     </script>
-</body>
-
+</body> 
 
 
 
